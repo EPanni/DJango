@@ -6,6 +6,7 @@
 <table class="table">
     <thead>
         <tr>
+            <th>Id</th>
             <th>Name</th>
             <th>Surname</th>
             <th>Phone</th>
@@ -14,8 +15,8 @@
     </thead>
     <tbody>
         {%for contact in contacts%}
-        {%if contact.display%}
         <tr>
+            <td>{{contact.id}}</td>
             <td>
                 <a href="{% url 'display_contact' contact_id=contact.id %}"> {{contact.name}}</a>
             </td>
@@ -23,7 +24,6 @@
             <td>{{contact.phone}}</td>
             <td>{{contact.description}}</td>
         </tr>
-        {%endif%}
         {%endfor%}
     </tbody>
 </table>
