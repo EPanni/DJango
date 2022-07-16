@@ -6,17 +6,17 @@
 <table class="table">
     <thead>
         <tr>
-            <th>Nome</th>
-            <th>Sobrenome</th>
-            <th>Telefone</th>
-            <th>Categoria</th>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Phone</th>
+            <th>Category</th>
         </tr>
     </thead>
     <tbody>
         {%for contact in contacts%}
         <tr>
             <td>
-                <a href="#"> {{contact.name}}</a>
+                <a href="{% url 'display_contact' contact_id=contact.id %}"> {{contact.name}}</a>
             </td>
             <td>{{contact.surname}}</td>
             <td>{{contact.phone}}</td>
