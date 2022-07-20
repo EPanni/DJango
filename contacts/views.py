@@ -1,10 +1,11 @@
 """ Django - Views.py"""
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import Http404
 from django.core.paginator import Paginator
 from django.db.models import Q, Value
 from django.db.models.functions import Concat
 from .models import Contact
+from django.contrib import messages
 
 
 def index(request):
@@ -29,8 +30,9 @@ def search(request):
     term = request.GET.get("term")
     fields = Concat("name", Value(" "), "surname")
 
-    if term is None:
-        raise Http404
+    if term is None or not term:
+        messages.add_message(request, messages.ERROR, "This field cannot be empty")
+        return redirect("index")
 
     # Search by name OR surname but NOT from 'name surname'
     # contacts = Contact.objects.order_by("name").filter(
